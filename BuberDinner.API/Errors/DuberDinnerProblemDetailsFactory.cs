@@ -6,6 +6,7 @@ using System.Diagnostics;
 
 namespace BuberDinner.API.Errors
 {
+    // link to github https://github.com/dotnet/aspnetcore/blob/main/src/Mvc/Mvc.Core/src/Infrastructure/DefaultProblemDetailsFactory.cs 
     public class DuberDinnerProblemDetailsFactory : ProblemDetailsFactory
     {
         private readonly ApiBehaviorOptions _options;
