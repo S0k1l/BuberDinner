@@ -1,14 +1,12 @@
-﻿using BuberDinner.Application.Common.Errors;
-using BuberDinner.Application.Services.Authentication;
+﻿using BuberDinner.Application.Services.Authentication;
 using DuberDinner.Contracts.Authentication;
-using FluentResults;
+using ErrorOr;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuberDinner.API.Controllers
 {
     [Route("auth")]
-    [ApiController]
-    public class AuthenticationController : ControllerBase
+    public class AuthenticationController : ApiController
     {
         private readonly IAuthenticationService _authenticationService;
 
@@ -20,25 +18,39 @@ namespace BuberDinner.API.Controllers
         [HttpPost("register")]
         public IActionResult Register(RegisterRequest request)
         {
-            Result<AuthenticationResult> registrationReult = _authenticationService.Register(
+            ErrorOr<AuthenticationResult> authResult = _authenticationService.Register(
                 request.FirstName,
                 request.LastName,
                 request.Email,
                 request.Password);
 
-            if (registrationReult.IsSuccess)
+
+            return authResult.Match(
+                authResult => Ok(MapAuthResult(authResult)),
+                errors => Problem(errors)
+                );
+
+        }
+
+
+        [HttpPost("login")]
+        public IActionResult Login(LoginRequest request)
+        {
+            ErrorOr<AuthenticationResult> authResult = _authenticationService.Login(
+                request.Email,
+                request.Password);
+
+
+            if(authResult.IsError && authResult.FirstError.Type == ErrorType.Validation)
             {
-                return Ok(MapAuthResult(registrationReult.Value));
+                return Problem(statusCode: (int)StatusCodes.Status401Unauthorized, title: authResult.FirstError.Description);
             }
 
-            var firstError = registrationReult.Errors[0];
 
-            if(firstError is DuplicateEmailError)
-            {
-                return Problem(statusCode: StatusCodes.Status409Conflict, title: "Email already exists.");
-            }
-
-            return Problem();
+            return authResult.Match(
+                authResult => Ok(MapAuthResult(authResult)),
+                errors => Problem(errors)
+                );
         }
 
         private static AuthenticationResponse MapAuthResult(AuthenticationResult authResult)
@@ -49,23 +61,6 @@ namespace BuberDinner.API.Controllers
                 authResult.User.LastName,
                 authResult.User.Email,
                 authResult.Token);
-        }
-
-        [HttpPost("login")]
-        public IActionResult Login(LoginRequest request)
-        {
-            var authResult = _authenticationService.Login(
-                request.Email,
-                request.Password);
-
-            var response = new AuthenticationResponse(
-                authResult.User.Id,
-                authResult.User.FirstName,
-                authResult.User.LastName,
-                authResult.User.Email,
-                authResult.Token);
-
-            return Ok(response);
         }
     }
 }
