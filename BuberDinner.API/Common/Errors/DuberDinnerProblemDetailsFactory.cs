@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Options;
 using System.Diagnostics;
 
-namespace BuberDinner.API.Errors
+namespace BuberDinner.API.Common.Errors
 {
     // link to github https://github.com/dotnet/aspnetcore/blob/main/src/Mvc/Mvc.Core/src/Infrastructure/DefaultProblemDetailsFactory.cs 
     public class DuberDinnerProblemDetailsFactory : ProblemDetailsFactory
