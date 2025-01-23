@@ -14,13 +14,14 @@ namespace BuberDinner.API.Controllers
         {
             Exception? exception = HttpContext.Features.Get<IExceptionHandlerFeature>()?.Error;
 
-            var (statusCode, message) = exception switch
-            {
-                IServiceExeption serviceExeption => ((int)serviceExeption.StatusCode, serviceExeption.ErrorMessage),
-                _ => (StatusCodes.Status500InternalServerError, "An unexpected error occurred.")
-            };
+            //var (statusCode, message) = exception switch
+            //{
+            //    IServiceExeption serviceExeption => ((int)serviceExeption.StatusCode, serviceExeption.ErrorMessage),
+            //    _ => (StatusCodes.Status500InternalServerError, "An unexpected error occurred.")
+            //};
 
-            return Problem(statusCode: statusCode, title: message);
+            //return Problem(statusCode: statusCode, title: message);
+            return Problem();
         }
     }
 }
