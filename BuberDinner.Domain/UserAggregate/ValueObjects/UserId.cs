@@ -1,16 +1,16 @@
 ﻿using BuberDinner.Domain.Common.Models;
 
-namespace BuberDinner.Domain.Common.ValueObjects
+namespace BuberDinner.Domain.UserAggregate.ValueObjects
 {
-    public sealed class RatingId : ValueObject
+    public sealed class UserId : ValueObject
     {
         public Guid Value { get; }
 
-        public RatingId(Guid value)
+        public UserId(Guid value)
         {
             Value = value;
         }
-        public static RatingId CreateUnique()
+        public static UserId CreateUnique()
         {
             return new(Guid.NewGuid());
         }

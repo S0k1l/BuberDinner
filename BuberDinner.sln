@@ -3,15 +3,28 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuberDinner.API", "BuberDinner.API\BuberDinner.API.csproj", "{AFE53BFF-0B93-4F22-8820-F2C743E48943}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuberDinner.API", "BuberDinner.API\BuberDinner.API.csproj", "{AFE53BFF-0B93-4F22-8820-F2C743E48943}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuberDinner.Contracts", "DuberDinner.Contracts\DuberDinner.Contracts.csproj", "{B712261D-AB3B-47D2-97AF-258E9762E77F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DuberDinner.Contracts", "DuberDinner.Contracts\DuberDinner.Contracts.csproj", "{B712261D-AB3B-47D2-97AF-258E9762E77F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuberDinner.Infrastructure", "DuberDinner.Infrastructure\DuberDinner.Infrastructure.csproj", "{C5E7BC20-01E5-4694-BF94-E10F15E3C0D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DuberDinner.Infrastructure", "DuberDinner.Infrastructure\DuberDinner.Infrastructure.csproj", "{C5E7BC20-01E5-4694-BF94-E10F15E3C0D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuberDinner.Domain", "BuberDinner.Domain\BuberDinner.Domain.csproj", "{38291A56-5E4D-48FC-A71D-8AADCF33D750}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuberDinner.Domain", "BuberDinner.Domain\BuberDinner.Domain.csproj", "{38291A56-5E4D-48FC-A71D-8AADCF33D750}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuberDinner.Application", "BuberDinner.Application\BuberDinner.Application.csproj", "{CF6380F2-7FFC-441F-8056-AB833F9CA410}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuberDinner.Application", "BuberDinner.Application\BuberDinner.Application.csproj", "{CF6380F2-7FFC-441F-8056-AB833F9CA410}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Requests", "Requests", "{2F37E940-A3EF-4DCF-BC04-8D30651D8C77}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentication", "Authentication", "{05504EEB-E080-4848-92CA-F31BC027431B}"
+	ProjectSection(SolutionItems) = preProject
+		Login.http = Login.http
+		Register.http = Register.http
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Menus", "Menus", "{B88D6175-0A26-41D3-8D2C-6EDA748D7863}"
+	ProjectSection(SolutionItems) = preProject
+		CreateMenu.http = CreateMenu.http
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +55,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{05504EEB-E080-4848-92CA-F31BC027431B} = {2F37E940-A3EF-4DCF-BC04-8D30651D8C77}
+		{B88D6175-0A26-41D3-8D2C-6EDA748D7863} = {2F37E940-A3EF-4DCF-BC04-8D30651D8C77}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9692D5AD-BA57-4FBA-9962-0E67D2810A1A}
