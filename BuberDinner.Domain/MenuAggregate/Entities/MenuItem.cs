@@ -18,5 +18,9 @@ namespace BuberDinner.Domain.MenuAggregate.Entities
         {
             return new(MenuItemId.CreateUnique(), name, description);
         }
+
+        private MenuItem()
+        {
+        }
     }
 }

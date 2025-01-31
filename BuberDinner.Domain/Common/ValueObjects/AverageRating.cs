@@ -32,6 +32,10 @@ namespace BuberDinner.Domain.Common.ValueObjects
         {
             yield return Value;
         }
-        
+
+        public AverageRating()
+        {
+        }
+
     }
 }

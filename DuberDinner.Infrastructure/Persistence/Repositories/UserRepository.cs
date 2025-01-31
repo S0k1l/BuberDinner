@@ -1,7 +1,7 @@
 ﻿using BuberDinner.Application.Common.Interfaces.Persistence;
 using BuberDinner.Domain.Entities;
 
-namespace DuberDinner.Infrastructure.Persistence
+namespace DuberDinner.Infrastructure.Persistence.Repositories
 {
     public class UserRepository : IUserRepository
     {
@@ -13,7 +13,7 @@ namespace DuberDinner.Infrastructure.Persistence
 
         public User? GetUserByEmail(string email)
         {
-           return _users.SingleOrDefault(u => u.Email == email);
+            return _users.SingleOrDefault(u => u.Email == email);
         }
     }
 }

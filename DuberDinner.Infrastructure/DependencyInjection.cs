@@ -10,6 +10,8 @@ using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
+using DuberDinner.Infrastructure.Persistence.Repositories;
 
 namespace DuberDinner.Infrastructure;
 
@@ -20,7 +22,7 @@ public static class DependencyInjection
         ConfigurationManager configuration)
     {
         services.AddAuth(configuration)
-                .AddPersistence();
+                .AddPersistence(configuration);
         services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
 
         return services;
@@ -28,8 +30,11 @@ public static class DependencyInjection
     }
 
     public static IServiceCollection AddPersistence(
-        this IServiceCollection services)
+        this IServiceCollection services,
+        ConfigurationManager configuration)
     {
+        services.AddDbContext<BuberDinnerDbContext>(options =>
+            options.UseSqlServer("Data Source=DESKTOP-1BKF19L;Initial Catalog=BuberDinner;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False"));
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IMenuRepository, MenuRepository>();
 

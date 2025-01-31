@@ -15,9 +15,9 @@ namespace BuberDinner.Domain.HostAggregate.ValueObjects
             return new(Guid.NewGuid());
         }
 
-        public static HostId Create(string hostId)
+        public static HostId Create(Guid value)
         {
-            return new(Guid.Parse(hostId));
+            return new(value);
         }
 
         public override IEnumerable<object> GetEqualityObjects()

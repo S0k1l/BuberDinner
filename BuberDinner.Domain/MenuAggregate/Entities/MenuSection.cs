@@ -32,5 +32,9 @@ namespace BuberDinner.Domain.MenuAggregate.Entities
                 description,
                 items);
         }
+
+        private MenuSection()
+        {
+        }
     }
 }
