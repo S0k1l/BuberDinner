@@ -12,6 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using DuberDinner.Infrastructure.Persistence.Repositories;
+using DuberDinner.Infrastructure.Interceptors;
 
 namespace DuberDinner.Infrastructure;
 
@@ -35,6 +36,7 @@ public static class DependencyInjection
     {
         services.AddDbContext<BuberDinnerDbContext>(options =>
             options.UseSqlServer("Data Source=DESKTOP-1BKF19L;Initial Catalog=BuberDinner;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False"));
+        services.AddScoped<PublishDomainEventsInterceptor>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IMenuRepository, MenuRepository>();
 
